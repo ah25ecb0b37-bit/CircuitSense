@@ -1,0 +1,17 @@
+{
+  "model": "RandomForest + shift/noise/scale augmentation + engineered stats",
+  "cv_accuracy": 0.869414291519127,
+  "test_accuracy": 0.8664596273291926,
+  "classes": [
+    "CAP_DEGRADED",
+    "CAP_SHORT",
+    "DIODE_OPEN",
+    "INDUCTOR_CORE_SAT",
+    "NORMAL",
+    "POWER_RAIL_NOISE",
+    "RES_DRIFT",
+    "TRANSISTOR_SATURATION"
+  ],
+  "original_samples": 8,
+  "augmented_samples": 1608
+}
