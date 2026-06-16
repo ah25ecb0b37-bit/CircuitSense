@@ -5,6 +5,7 @@ from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 import io, csv, time
+from pathlib import Path
 
 from .schemas import WaveformRequest, FaultPrediction, BatchWaveformRequest, HealthResponse
 
@@ -29,7 +30,11 @@ async def load_model():
     global predictor
     try:
         from src.inference import CircuitSensePredictor
-        predictor = CircuitSensePredictor("checkpoints/best.pt")
+        base_dir = Path(__file__).resolve().parent.parent
+        checkpoint_path = base_dir / "checkpoints" / "best.pt"
+        print(f"Loading model from: {checkpoint_path}")
+        print(f"Checkpoint exists: {checkpoint_path.exists()}")
+        predictor = CircuitSensePredictor(str(checkpoint_path))
         print("Model loaded successfully.")
     except Exception as e:
         print(f"Model not loaded: {e} — run training first.")
